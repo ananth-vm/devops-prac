@@ -1,0 +1,6 @@
+<<<<<<< HEAD
+This is a feature branch!
+This should throw a merge conflict
+=======
+This is branch b3
+>>>>>>> b3
