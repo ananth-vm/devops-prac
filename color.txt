@@ -1,1 +1,2 @@
-This is main branch!
+This is a feature branch!
+This should throw a merge conflict
