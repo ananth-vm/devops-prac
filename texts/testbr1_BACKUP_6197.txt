@@ -1,5 +1,0 @@
-<<<<<<< HEAD
-made in main branch
-=======
-made from testbr branch
->>>>>>> testbr
