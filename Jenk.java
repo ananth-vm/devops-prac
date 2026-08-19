@@ -6,5 +6,5 @@ public class Jenk {
         System.out.println("Execution time: " + LocalDateTime.now());
     }
 }
-//echo "---"
+//echo "--"
 //comment
