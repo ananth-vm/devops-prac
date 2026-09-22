@@ -1,17 +1,21 @@
 pipeline {
     agent any
 
-    stages {
-        stage('Checkout Code') {
-            steps {
-                checkout scm
-            }
-        }
+    // Triggers execution periodically regardless of whether code changes or not
+    // Adjust the schedule as needed, or remove triggers if you only want manual "Build Now"
+    triggers {
+        // Runs every hour, hashed across instances:
+        cron('* * * * *')
+        
+        // Example for every 15 minutes:
+        // cron('H/15 * * * *')
+    }
 
-        stage('Verify Java Environment') {
+    stages {
+        stage('Checkout') {
             steps {
-                bat 'java -version'
-                bat 'javac -version'
+                // Pulls the repo code
+                checkout scm
             }
         }
 
@@ -19,22 +23,21 @@ pipeline {
             steps {
                 bat '''
                     if not exist bin mkdir bin
-                    javac -d bin Main.java
+                    javac -d bin Jenk.java
                 '''
-                // If you have multiple files under src/:
-                // javac -d bin src\\*.java
             }
         }
 
-        stage('Run') {
+        stage('Execute') {
             steps {
-                bat 'java -cp bin Main'
+                bat 'java -cp bin Jenk'
             }
         }
     }
 
     post {
         always {
+            // Cleans up the workspace after execution
             cleanWs()
         }
     }
